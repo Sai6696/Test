@@ -13,16 +13,12 @@ pipeline{
        bat "mvn clean test"
        }
       }
-   try{
     stage('Deploy'){
      steps{
        echo "echo Deploying to ${BRANCH_NAME}..."
        bat "mvn clean package deploy -DmuleDeploy"
        }
       }
-      }catch(Exception e){
-                        echo "Test Failed: ${e}"
-                    }
   }   
  }  
       

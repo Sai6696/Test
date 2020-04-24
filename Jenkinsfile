@@ -18,10 +18,12 @@ pipeline{
      steps{
        echo "echo Deploying to ${BRANCH_NAME}..."
        bat "mvn clean package deploy -DmuleDeploy"
-       }catch(e)
-       {echo "failed: {e}"}
        }
-      }
+       }catch(e){
+       echo "failed: {e}"
+       }
+       }
+      
   }   
  }  
       

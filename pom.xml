@@ -25,6 +25,17 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
+					<cloudHubDeployment>
+					   <muleVersion>4.2.2</muleVersion> 		
+					   <username>Jonnala6696</username> 		
+					   <password>Jstr@4567</password> 		
+					   <applicationName>First-Project</applicationName> 
+					   <environment>DEV</environment>  	
+					   <businessGroup>Speridian</businessGroup> 
+					   <uri>https://anypoint.mulesoft.com/</uri> 						
+					   <workerType>Micro</workerType> 
+					   <workers>1</workers>
+					</cloudHubDeployment>
 				</configuration>
 			</plugin>
 		</plugins>

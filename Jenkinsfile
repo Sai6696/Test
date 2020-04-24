@@ -13,14 +13,6 @@ pipeline{
        bat "mvn clean test"
        }
       }
-      stage('SonarQube'){
-            steps{
-                 echo "echo SonarQube ${BRANCH_NAME}..."
-                 withSonarQubeEnv("${SonarQubeID}") {
-                 bat "mvn sonar:sonar -DskipTests=true -Dsonar.projectName=${sonar_projectname} -Dsonar.projectDescription=${sonar_projectdescription} -Dsonar.branch.name=${git_branchname} -Dsonar.branch.target=${git_branchname}"
-                }
-            }
-        }
     stage('Deploy'){
      steps{
        echo "echo Deploying to ${BRANCH_NAME}..."

@@ -14,8 +14,8 @@ pipeline{
        }
       }
     stage('Deploy'){
-     steps{
      try{
+     steps{
        echo "echo Deploying to ${BRANCH_NAME}..."
        bat "mvn clean package deploy -DmuleDeploy"
        }catch(e)

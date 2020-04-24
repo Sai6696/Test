@@ -7,7 +7,12 @@ pipeline{
        bat "mvn clean install -DskipTests=true"
        }
       }
-   
+    stage('Test'){
+     steps{
+       echo "echo Testing ${BRANCH_NAME}..."
+       bat "mvn clean test"
+       }
+      }
   }   
  }  
       

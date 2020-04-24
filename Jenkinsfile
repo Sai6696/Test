@@ -16,7 +16,7 @@ pipeline{
     stage('Deploy'){
      steps{
        echo "echo Deploying to ${BRANCH_NAME}..."
-       bat "mvn clean deploy -DmuleDeploy"
+       bat "mvn clean deploy -DmuleDeploy -Dmule.env=dev"
        }
       }
   }   

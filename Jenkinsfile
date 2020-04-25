@@ -13,12 +13,13 @@ pipeline{
        bat "mvn clean test"
        }
       }
+      
     stage('Deploy'){
      steps{
        echo "echo Deploying to ${BRANCH_NAME}..."
        bat "mvn clean deploy -DmuleDeploy"
        }
-      }
+     }
   }   
  }  
       

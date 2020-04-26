@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage('Checkout'){
             steps{
-                 echo  "Build:  + $(projectName) +  for branch + env.BRANCH_NAME"
+                 echo  "Build:  + ${projectName} +  for branch + env.BRANCH_NAME"
             }
         }
     stage('Build'){

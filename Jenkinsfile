@@ -1,6 +1,12 @@
+def projectName = 'Test'
 pipeline{
- agent any
-  stages{
+    agent any
+    stages{
+        stage('Checkout'){
+            steps{
+                 echo  "Build:  + $(projectName) +  for branch + env.BRANCH_NAME"
+            }
+        }
     stage('Build'){
       steps{
        echo "echo Building ${BRANCH_NAME}..."

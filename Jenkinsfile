@@ -8,9 +8,12 @@ pipeline{
                  git(	
                  url: "https://github.com/Sai6696/Test.git",
 				 credentialsId: 'Github',
-				 branch: "${BRANCH_NAME}"
-				 
+				 branch: "${BRANCH_NAME}"				 
 				)
+			bat 'git config push.default simple' 
+			bat 'git clean -f'
+			bat 'git reset --hard'
+			bat 'git checkout .'
                  
             }
         }

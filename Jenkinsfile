@@ -4,7 +4,14 @@ pipeline{
     stages{
         stage('Checkout'){
             steps{
-                 echo  "Build:  + ${projectName} +  for branch + env.BRANCH_NAME"
+                 echo  "Build: ${projectName} for branch ${BRANCH_NAME}"
+                 git(	
+                 url: "https://sourcecode.com/${projectName}.git",
+				 credentialsId: 'Github',
+				 branch: ${BRANCH_NAME}
+				 
+				)
+                 
             }
         }
     stage('Build'){

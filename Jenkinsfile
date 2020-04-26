@@ -8,7 +8,7 @@ pipeline{
                  git(	
                  url: "https://sourcecode.com/${projectName}.git",
 				 credentialsId: 'Github',
-				 branch: ${BRANCH_NAME}
+				 branch: "${BRANCH_NAME}"
 				 
 				)
                  

@@ -29,19 +29,20 @@ pipeline{
        bat "mvn clean test"
        }
       }
-      stage('Deploy'){
-      steps{
-      script{
-      if("${BRANCH_NAME} = 'qa'"){
-      echo "${JOB_NAME} "
-      }
-      else if ("${BRANCH_NAME} = 'develop'"){
-      echo "{BRANCH_NAME}"
-      }
-      
-      }
-      }
-      }
+    stage('Deploy'){
+    when {
+        branch 'develop'
+    }
+    steps{
+             echo "${JOB_NAME} echo Deploying to ${BRANCH_NAME}..."
+    }
+    when {
+        branch 'qa'
+    }
+    steps{
+             echo "echo Deploying to ${BRANCH_NAME}..."
+    }
+}
       
   }   
  }  

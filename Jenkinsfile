@@ -6,7 +6,6 @@ pipeline{
         stage('Checkout'){
             steps{
                  echo  "Build: ${projectName} for branch ${BRANCH_NAME}"
-                 echo "${jobName}"
                  git(	
                  url: "https://github.com/Sai6696/Test.git",
 				 credentialsId: 'Github',
@@ -29,6 +28,12 @@ pipeline{
        echo "echo Testing ${BRANCH_NAME}..."
        bat "mvn clean test"
        }
+      }
+     stage('Deploy'){
+         steps{
+             echo "echo Deploying to ${BRANCH_NAME}..."
+             bat "mvn clean deploy -DmuleDeploy"
+        }
       }
   }   
  }  

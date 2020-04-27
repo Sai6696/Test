@@ -24,6 +24,7 @@ pipeline{
        bat "mvn clean install -DskipTests=true"
        }else if (env.BRANCH_NAME == 'qa'){
         echo "echo Building ${BRANCH_NAME}..."
+        }
        }
       }
     stage('Test'){

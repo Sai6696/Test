@@ -23,6 +23,7 @@ pipeline{
 		steps{
        		echo "echo Building ${BRANCH_NAME}..."
        		bat "mvn clean install -DskipTests=true"
+       }
        }else if(env.BRANCH_NAME == 'qa')
        {
        steps{

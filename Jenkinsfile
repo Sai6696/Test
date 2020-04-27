@@ -2,6 +2,9 @@ def jobName = JOB_NAME
 def projectName = jobName.split('/')[0]
 pipeline{
     agent any
+     parameters { 
+        choice(name: 'deploy_environment', choices: "DEV\QA\SIT\PROD", description: 'Application deployment environment') 
+    }
     stages{
         stage('Checkout'){
             steps{
@@ -31,6 +34,7 @@ pipeline{
         stage('Deploy'){
          steps{
              echo "echo Deploying to ${BRANCH_NAME}..."
+             bat "mvn clean deploy -Denvironment=${params.deploy_environment} -DmuleDeploy"
            }   
         }
     }

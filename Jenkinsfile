@@ -5,8 +5,8 @@ try{
 	stage('Checkout'){
                  echo  "Build: ${projectName} for branch ${BRANCH_NAME}"
                  git(	
-                 url: "https://https://sourcecode.jnj.com/.../....git",
-				 credentialsId: '',             
+                 url: "https://github.com/Sai6696/Test.git",
+				 credentialsId: 'Github',             
 				 branch: "${BRANCH_NAME}"				 
 				)
 			bat 'git clean -f'		            

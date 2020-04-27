@@ -18,13 +18,9 @@ try{
                  echo "echo Building ${BRANCH_NAME}..."
 				 bat "mvn clean install -DskipTests=true"
         }
-	stage('Test'){
-                 echo "echo Testing ${BRANCH_NAME}..."
-                 bat "mvn clean test"
-        }
 	stage('Deploy'){
              echo "echo Deploying to ${BRANCH_NAME}..."
-             bat "mvn clean deploy -DmuleDeploy"
+             bat "mvn deploy -DmuleDeploy"
 		}
     } catch(Exception e){
              echo "Build Failed: ${e}"

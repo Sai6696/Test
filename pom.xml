@@ -34,8 +34,6 @@
 					   <environment>${environment}</environment>  	
 					   <businessGroup>Speridian</businessGroup> 
 					   <uri>https://anypoint.mulesoft.com/</uri> 						
-					   <workerType>Micro</workerType> 
-					   <workers>1</workers>
 					   <objectStoreV2>true</objectStoreV2>
 					</cloudHubDeployment>
 				</configuration>

@@ -32,10 +32,10 @@ pipeline{
       stage('Deploy'){
       steps{
       script{
-      if("${BRANCH_NAME} = 'develop'"){
-      echo "${JOB_NAME}"
+      if("${BRANCH_NAME} = 'qa'"){
+      echo "${JOB_NAME} "
       }
-      else if ("${BRANCH_NAME} = 'qa'"){
+      else if ("${BRANCH_NAME} = 'develop'"){
       echo "{BRANCH_NAME}"
       }
       

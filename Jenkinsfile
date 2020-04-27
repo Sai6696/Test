@@ -19,7 +19,7 @@ pipeline{
     stage('Build'){
       steps{
        echo "echo Building ${BRANCH_NAME}..."
-       echo"${JOB_NAME}......."
+       echo"${JOB_NAME}.split('/')[0]......."
        bat "mvn clean install -DskipTests=true"
        }
       }

@@ -10,8 +10,7 @@ pipeline{
 				 credentialsId: 'Github',
 				 branch: "${BRANCH_NAME}"				 
 				)
-			bat 'git config push.default simple' 
-			bat 'git clean -f'
+			bat 'git clean -f'		
 			bat 'git reset --hard'
 			bat 'git checkout .'
                  
@@ -20,6 +19,7 @@ pipeline{
     stage('Build'){
       steps{
        echo "echo Building ${BRANCH_NAME}..."
+       echo"{JOB_NAME}......."
        bat "mvn clean install -DskipTests=true"
        }
       }

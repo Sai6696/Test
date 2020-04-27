@@ -29,9 +29,11 @@ pipeline{
             }
         }
         stage('Deploy'){
+         if(env.BRANCH_NAME == 'develop'){
          steps{
-             echo "echo Deploying to ${BRANCH_NAME}..."
-           }   
+             echo "Deploying to ${BRANCH_NAME}..."
+           } 
+           }  
         }
     }
 }

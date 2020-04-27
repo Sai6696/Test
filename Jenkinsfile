@@ -18,27 +18,33 @@ pipeline{
             }
         }
     stage('Build'){
-    if(env.BRANCH_NAME == 'develop')
-      	{
-		steps{
-       		echo "echo Building ${BRANCH_NAME}..."
-       		bat "mvn clean install -DskipTests=true"
+      steps{
+       echo "echo Building ${BRANCH_NAME}..."
+       bat "mvn clean install -DskipTests=true"
        }
-       }else if(env.BRANCH_NAME == 'qa')
-       {
-       steps{
-        echo "echo Building ${BRANCH_NAME}..."
-        }
-        }
-       }
+      }
     stage('Test'){
      steps{
        echo "echo Testing ${BRANCH_NAME}..."
        bat "mvn clean test"
        }
       }
- }
- } 
+      stage('Deploy'){
+      steps{
+      script{
+      if("${BRANCH_NAME} = 'develop'"){
+      echo "${JOB_NAME}"
+      }
+      else if ("${BRANCH_NAME} = 'qa'"){
+      echo "{BRANCH_NAME}"
+      }
+      
+      }
+      }
+      }
+      
+  }   
+ }  
       
       
       

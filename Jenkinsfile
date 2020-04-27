@@ -3,7 +3,7 @@ def projectName = jobName.split('/')[0]
 pipeline{
     agent any
      parameters { 
-        choice(name: 'deploy_environment', choices: "DEV\QA\SIT\PROD", description: 'Application deployment environment') 
+        choice(name: 'deploy_environment', choices: "DEV\nQA\nSIT\nPROD", description: 'Application deployment environment') 
     }
     stages{
         stage('Checkout'){

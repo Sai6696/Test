@@ -1,10 +1,12 @@
-def projectName = 'Test'
+def jobName = JOB_NAME
+def projectName = jobName.split('/')[0]
 pipeline{
     agent any
     stages{
         stage('Checkout'){
             steps{
                  echo  "Build: ${projectName} for branch ${BRANCH_NAME}"
+                 echo "${jobName}"
                  git(	
                  url: "https://github.com/Sai6696/Test.git",
 				 credentialsId: 'Github',
@@ -19,7 +21,6 @@ pipeline{
     stage('Build'){
       steps{
        echo "echo Building ${BRANCH_NAME}..."
-       echo"${JOB_NAME}.split('/')[0]......."
        bat "mvn clean install -DskipTests=true"
        }
       }

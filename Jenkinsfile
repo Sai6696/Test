@@ -19,10 +19,12 @@ pipeline{
         }
     stage('Build'){
       steps{
-       if(env.BRANCH_NAME == 'develop'){
-       echo "echo Building ${BRANCH_NAME}..."
-       bat "mvn clean install -DskipTests=true"
-       }else if (env.BRANCH_NAME == 'qa'){
+       if(env.BRANCH_NAME == 'develop')
+      	{
+       		echo "echo Building ${BRANCH_NAME}..."
+       		bat "mvn clean install -DskipTests=true"
+       }else if(env.BRANCH_NAME == 'qa')
+       {
         echo "echo Building ${BRANCH_NAME}..."
         }
        }
@@ -38,7 +40,9 @@ pipeline{
              echo "echo Deploying to ${BRANCH_NAME}..."
              bat "mvn clean deploy -DmuleDeploy"
   }   
- }  
+ } 
+ }
+ } 
       
       
       

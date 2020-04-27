@@ -18,14 +18,16 @@ pipeline{
             }
         }
     stage('Build'){
-      steps{
-       if(env.BRANCH_NAME == 'develop')
+    if(env.BRANCH_NAME == 'develop')
       	{
+		steps{
        		echo "echo Building ${BRANCH_NAME}..."
        		bat "mvn clean install -DskipTests=true"
        }else if(env.BRANCH_NAME == 'qa')
        {
+       steps{
         echo "echo Building ${BRANCH_NAME}..."
+        }
         }
        }
       }

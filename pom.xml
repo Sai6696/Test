@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mycompany</groupId>
@@ -17,7 +18,7 @@
 		<mule.maven.plugin.version>3.3.5</mule.maven.plugin.version>
 	</properties>
 
-	<build>
+<build>
 		<plugins>
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
@@ -35,6 +36,7 @@
 					   <uri>https://anypoint.mulesoft.com/</uri> 						
 					   <workerType>Micro</workerType> 
 					   <workers>1</workers>
+					   <objectStoreV2>true</objectStoreV2>
 					</cloudHubDeployment>
 				</configuration>
 				<executions>
@@ -46,9 +48,14 @@
             </goals>
           </execution>
         </executions>
-			</plugin>
-		</plugins>
-	</build>
+	</plugin>
+	<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>2.5.2</version>
+    </plugin>
+ </plugins>
+</build>
 
 	<dependencies>
         <dependency>
@@ -95,6 +102,10 @@
                 <enabled>false</enabled>
             </snapshots>
         </pluginRepository>
-    </pluginRepositories>
+        <pluginRepository>
+		<id>mule-public </id>
+		<url>https://repository.mulesoft.org/nexus/content/repositories/releases </url>
+	</pluginRepository>
+    </pluginRepositories> 
 
 </project>

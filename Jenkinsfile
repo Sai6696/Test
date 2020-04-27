@@ -1,6 +1,22 @@
+def jobName = JOB_NAME
+def projectName = jobName.split('/')[0]
 pipeline{
- agent any
-  stages{
+    agent any
+    stages{
+        stage('Checkout'){
+            steps{
+                 echo  "Build: ${projectName} for branch ${BRANCH_NAME}"
+                 git(	
+                 url: "https://github.com/Sai6696/Test.git",
+				 credentialsId: 'Github',
+				 branch: "${BRANCH_NAME}"				 
+				)
+			bat 'git clean -f'		
+			bat 'git reset --hard'
+			bat 'git checkout .'
+                 
+            }
+        }
     stage('Build'){
       steps{
        echo "echo Building ${BRANCH_NAME}..."
@@ -13,12 +29,20 @@ pipeline{
        bat "mvn clean test"
        }
       }
-    stage('Deploy'){
-     steps{
-       echo "echo Deploying to ${BRANCH_NAME}..."
-       bat "mvn clean package deploy -DmuleDeploy"
-       }
+      stage('Deploy'){
+      steps{
+      script{
+      if("${BRANCH_NAME} = 'develop'"){
+      echo "${JOB_NAME}"
       }
+      else if ("${BRANCH_NAME} = 'qa'"){
+      echo "{BRANCH_NAME}"
+      }
+      
+      }
+      }
+      }
+      
   }   
  }  
       

@@ -1,5 +1,5 @@
 def application ='mule-test-teja'
-pipelien{
+pipeline{
 agent any
     stages{
         stage('Checkout'){

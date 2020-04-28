@@ -1,22 +1,13 @@
-def jobName = JOB_NAME
-def projectName = jobName.split('/')[0]
-pipeline{
-    agent any
-     parameters { 
-        choice(name: 'deploy_environment', choices: "DEV\nQA\nSIT\nPROD", description: 'Application deployment environment') 
-    }
+def application ='mule-test-teja'
+pipelien{
+agent any
     stages{
         stage('Checkout'){
             steps{
-                 echo  "Build: ${projectName} for branch ${BRANCH_NAME}"
-                 git(	
-                 url: "https://github.com/Sai6696/Test.git",
-				 credentialsId: 'Github', 
-				 branch: "${BRANCH_NAME}"				 
-				)
-			bat 'git clean -f'		
-			bat 'git reset --hard'  
-			bat 'git checkout .'              
+             echo  "Build: ${projectName} for branch ${BRANCH_NAME}"
+             bat 'git clean -f'		             
+             bat 'git reset --hard'               
+             bat 'git checkout .'              
             }
         }
         stage('Build'){
@@ -32,12 +23,23 @@ pipeline{
             }
         }
         stage('Deploy'){
+            when{
+               ${BRANCH_NAME} == 'develop' 
+            }
          steps{
              echo "echo Deploying to ${BRANCH_NAME}..."
-             bat "mvn clean deploy -Denvironment=${params.deploy_environment} -DmuleDeploy"
-           }   
+             bat "mvn clean deploy -Denvironment=DEV -Dapplication=${application}-md -DmuleDeploy "
+            }  
+             when{
+               ${BRANCH_NAME} == 'QA' 
+            }
+         steps{
+             echo "echo Deploying to ${BRANCH_NAME}..."
+             bat "mvn clean deploy -Denvironment=QA -Dapplication=${application}-qa -DmuleDeploy "
+            } 
         }
     }
+
 }
 
      
